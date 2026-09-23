@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "siteName": "IBS Consultancy",
+    "home": {
+      "title": "IBS Consultancy | Business Setup & Golden Visa Services in Dubai, UAE",
+      "description": "IBS Consultancy helps entrepreneurs and investors establish, structure, and grow their business in the UAE — company formation, Golden Visa advisory, PRO services, and corporate structuring. Book a free consultation."
+    },
+    "about": {
+      "title": "About Us | IBS Consultancy — UAE Business Setup Experts",
+      "description": "Founded by industry veterans, IBS Consultancy delivers premium business setup and advisory services across Dubai and the wider UAE. Learn about our story, values, and approach."
+    },
+    "services": {
+      "title": "Services | Company Formation, Golden Visa & PRO Services — IBS Consultancy",
+      "description": "Explore IBS Consultancy services: mainland & free zone business setup, Golden Visa advisory, government & PRO services, and corporate structuring for the UAE market."
+    },
+    "contact": {
+      "title": "Contact Us | Get a Free Consultation — IBS Consultancy Dubai",
+      "description": "Talk to IBS Consultancy about setting up or growing your business in the UAE. Request a free, no-obligation consultation with our Dubai-based advisors."
+    },
+    "blog": {
+      "title": "Insights & Guides | IBS Consultancy Blog",
+      "description": "Practical guides and insights on business setup, licensing, visas, tax, and doing business in the UAE — from the advisors at IBS Consultancy."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Insights",
+    "contact": "Contact",
+    "cta": "Get Free Consultation",
+    "langLabel": "العربية"
+  },
+  "hero": {
+    "eyebrow": "Elevate Your Business",
+    "title": "We design how your business operates in the UAE",
+    "subtitle": "Transformative, end-to-end strategies for entrepreneurs and investors looking to establish a premium presence in the UAE market — backed by deep local expertise.",
+    "ctaPrimary": "Get Free Consultation",
+    "ctaSecondary": "Explore Services",
+    "trust": "Trusted by founders setting up across Dubai, Abu Dhabi & the UAE"
+  },
+  "stats": {
+    "heading": "Results that speak for themselves",
+    "items": [
+      { "value": "12", "suffix": "+", "label": "Years of combined expertise" },
+      { "value": "850", "suffix": "+", "label": "Companies formed in the UAE" },
+      { "value": "98", "suffix": "%", "label": "Client satisfaction rate" },
+      { "value": "40", "suffix": "+", "label": "Free zones & jurisdictions covered" }
+    ]
+  },
+  "servicesPreview": {
+    "eyebrow": "Our Expertise",
+    "title": "Customized solutions for your business success",
+    "subtitle": "A complete range of services tailored to facilitate your business setup, compliance, and growth in the UAE market.",
+    "readMore": "Read More",
+    "learnMore": "Learn more"
+  },
+  "services": {
+    "eyebrow": "Our Expert Services",
+    "title": "Unlock your business potential in the UAE",
+    "subtitle": "From first license to long-term growth, we handle the detail so you can focus on building.",
+    "processTitle": "How we deliver tailored solutions",
+    "processSubtitle": "A clear, proven path from first conversation to a fully operational business.",
+    "items": [
+      {
+        "id": "business-setup",
+        "number": "01",
+        "title": "Business Setup",
+        "short": "Comprehensive support for establishing your enterprise in the UAE.",
+        "description": "Our Business Setup service covers everything needed to establish your presence in the UAE — choosing the right license and legal structure, selecting between mainland and free zone, identifying prime locations, and handling every legal requirement. We ensure a seamless setup that aligns with your vision, so you can focus on growth.",
+        "features": [
+          "Mainland & free zone company formation",
+          "Trade license selection & activity approval",
+          "Bank account opening support",
+          "Office space & Ejari guidance"
+        ]
+      },
+      {
+        "id": "golden-visa",
+        "number": "02",
+        "title": "Golden Visa Advisory",
+        "short": "Expert guidance for securing your 10-year UAE Golden Visa.",
+        "description": "Our Golden Visa Advisory helps high-net-worth individuals, investors, entrepreneurs, and skilled professionals navigate the UAE's long-term residency programme. We assess your eligibility, prepare and streamline the application, ensure full compliance, and tailor a strategy that maximizes your residency and investment options.",
+        "features": [
+          "Eligibility assessment & category matching",
+          "Document preparation & attestation",
+          "Investor, entrepreneur & talent routes",
+          "Family sponsorship guidance"
+        ]
+      },
+      {
+        "id": "government-services",
+        "number": "03",
+        "title": "Government & PRO Services",
+        "short": "Efficient handling of all your government transactions.",
+        "description": "IBS Consultancy manages all government-related transactions and PRO services on your behalf. Our team ensures compliance with local regulations, processes documents and permits, and acts as your liaison with the authorities — removing bureaucratic obstacles so you can concentrate on your business objectives.",
+        "features": [
+          "Visa processing & renewals",
+          "Emirates ID & medical coordination",
+          "Document clearing & attestation",
+          "Government liaison & approvals"
+        ]
+      },
+      {
+        "id": "corporate-structuring",
+        "number": "04",
+        "title": "Corporate Structuring",
+        "short": "Optimize your business structure for growth and compliance.",
+        "description": "Our Corporate Structuring service refines your business framework to maximize operational efficiency and regulatory compliance. We analyze your current structure, recommend optimal adjustments, and implement strategies tailored to your industry — helping your business thrive and scale sustainably in a competitive market.",
+        "features": [
+          "Holding & operating structures",
+          "Corporate tax & VAT alignment",
+          "Shareholder & governance advisory",
+          "Restructuring & expansion planning"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "eyebrow": "Why Choose Us",
+    "title": "Unmatched value and expertise",
+    "items": [
+      {
+        "number": "01",
+        "title": "Tailored Solutions",
+        "description": "Bespoke consulting crafted around the specific needs, industry, and ambitions of your business in the UAE."
+      },
+      {
+        "number": "02",
+        "title": "Expert Guidance",
+        "description": "Deep, current knowledge of UAE regulations lets you navigate the complexities of setup and operation effortlessly."
+      },
+      {
+        "number": "03",
+        "title": "Strategic Partnerships",
+        "description": "Direct connections with key authorities and stakeholders give your business valuable local insight and access."
+      },
+      {
+        "number": "04",
+        "title": "Commitment to Excellence",
+        "description": "A relentless focus on quality means we stand by our clients at every step, long after the license is issued."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Our Story",
+    "title": "Understanding your business needs is our foundation",
+    "lead": "IBS Consultancy was established by industry veterans dedicated to providing high-end consulting services to businesses seeking success in the dynamic UAE landscape.",
+    "body": [
+      "We started IBS Consultancy with a simple conviction: setting up and running a business in the UAE should feel like an opportunity, not an obstacle course. Too many founders lose momentum navigating licenses, approvals, and paperwork alone.",
+      "Our team combines years of hands-on experience across company formation, government relations, and corporate advisory. We translate the UAE's fast-moving regulatory environment into clear, actionable steps — and stay by your side well beyond incorporation.",
+      "From a single free zone license to a multi-entity regional structure, we treat every client's ambition as our own."
+    ],
+    "missionTitle": "Our Mission",
+    "mission": "To be the most trusted partner for entrepreneurs and investors building their future in the UAE — delivering clarity, compliance, and confidence at every stage.",
+    "valuesTitle": "What we stand for",
+    "values": [
+      { "title": "Integrity", "description": "Straight answers, transparent pricing, and advice that puts your interests first." },
+      { "title": "Excellence", "description": "We hold ourselves to the highest standard on every file, large or small." },
+      { "title": "Partnership", "description": "We think like an extension of your team, not a transactional vendor." },
+      { "title": "Local Depth", "description": "Genuine, current knowledge of UAE authorities, free zones, and regulations." }
+    ]
+  },
+  "process": {
+    "items": [
+      { "step": "01", "title": "Consultation", "description": "An in-depth conversation to understand your goals, activity, and unique business needs." },
+      { "step": "02", "title": "Strategy Development", "description": "A customized setup and growth plan aligned with your objectives for the best outcome and cost." },
+      { "step": "03", "title": "Execution", "description": "We implement the plan end-to-end, with ongoing support and expert guidance at every step." }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Client Success Stories",
+    "title": "Hear from the founders we've helped",
+    "ratingLabel": "Google rating from our clients",
+    "ratingValue": "4.8",
+    "ratingSummary": "Consistently rated 5 stars by founders who set up with us",
+    "items": [
+      {
+        "quote": "IBS Consultancy made our business setup in Dubai streamlined and stress-free. Their knowledge of the market is unmatched, and they were responsive at every stage.",
+        "name": "Sarah A.",
+        "role": "Founder, E-commerce Startup"
+      },
+      {
+        "quote": "The team provided exceptional service and insights that were pivotal to our success entering the UAE market. They handled the paperwork so we could focus on the business.",
+        "name": "James N.",
+        "role": "Managing Director, Tech Company"
+      },
+      {
+        "quote": "From license to Golden Visa, everything was handled professionally and on time. I recommend IBS to any entrepreneur serious about the UAE.",
+        "name": "Mohammed R.",
+        "role": "Investor & Entrepreneur"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Take the next step towards success",
+    "subtitle": "Connect with us for a tailored consultation and strategic advice as you take your business to the next level in the UAE.",
+    "button": "Get Free Consultation",
+    "secondary": "Talk to us on WhatsApp"
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Let's build your UAE business together",
+    "subtitle": "Tell us a little about your plans and one of our advisors will get back to you within one business day.",
+    "infoTitle": "Contact information",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "whatsappLabel": "WhatsApp",
+    "hoursLabel": "Working hours",
+    "hoursValue": "Sunday – Thursday, 9:00 AM – 6:00 PM (GST)",
+    "addressLabel": "Office",
+    "addressValue": "Business Bay, Dubai, United Arab Emirates",
+    "form": {
+      "title": "Request your free consultation",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Ahmed Gaber",
+      "email": "Email address",
+      "emailPlaceholder": "you@company.com",
+      "phone": "Phone / WhatsApp",
+      "phonePlaceholder": "+971 50 000 0000",
+      "service": "Service of interest",
+      "servicePlaceholder": "Select a service",
+      "serviceOptions": [
+        "Business Setup",
+        "Golden Visa Advisory",
+        "Government & PRO Services",
+        "Corporate Structuring",
+        "Not sure yet"
+      ],
+      "message": "How can we help?",
+      "messagePlaceholder": "Tell us about your business plans…",
+      "consent": "I agree to be contacted by IBS Consultancy about my enquiry.",
+      "submit": "Request Free Consultation",
+      "submitting": "Sending…",
+      "successTitle": "Thank you — we've received your request.",
+      "successBody": "One of our advisors will contact you within one business day. For anything urgent, reach us on WhatsApp.",
+      "errorTitle": "Something went wrong.",
+      "errorBody": "Please try again, or contact us directly by phone or WhatsApp.",
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "consentRequired": "Please accept to be contacted so we can respond."
+    }
+  },
+  "blog": {
+    "eyebrow": "Insights & Guides",
+    "title": "Doing business in the UAE, made clear",
+    "subtitle": "Practical guides on setup, licensing, visas, and growth from our advisory team.",
+    "readArticle": "Read article",
+    "backToBlog": "Back to Insights",
+    "minRead": "min read",
+    "empty": "New articles are on the way. Check back soon.",
+    "posts": [
+      {
+        "slug": "mainland-vs-free-zone",
+        "title": "Mainland vs Free Zone: which is right for your UAE business?",
+        "excerpt": "The single most important early decision for most founders. We break down ownership, cost, scope, and when each option makes sense.",
+        "date": "2026-03-18",
+        "readingTime": "6",
+        "category": "Business Setup",
+        "body": [
+          "Choosing between a mainland and a free zone company is one of the first — and most consequential — decisions when setting up in the UAE. Both are excellent options; the right one depends on how and where you plan to do business.",
+          "A mainland company, licensed by the emirate's Department of Economic Development, can trade freely across the UAE and bid for government contracts. Recent reforms allow full foreign ownership for most activities, making the mainland far more attractive than it once was.",
+          "A free zone company is set up within one of the UAE's 40+ specialized economic zones. Free zones offer 100% foreign ownership, simplified setup, and sector-specific ecosystems — ideal for services, trading, and holding structures that don't need a physical mainland storefront.",
+          "The decision usually comes down to your target customers, whether you need a local retail presence, your budget, and your long-term structure. In a short consultation we can map your activity to the most cost-effective, compliant option."
+        ]
+      },
+      {
+        "slug": "uae-golden-visa-guide",
+        "title": "The UAE Golden Visa: who qualifies and how to apply",
+        "excerpt": "A 10-year residency that changes how you live and invest in the UAE. Here's who's eligible and what the process actually looks like.",
+        "date": "2026-02-27",
+        "readingTime": "7",
+        "category": "Golden Visa",
+        "body": [
+          "The UAE Golden Visa grants long-term residency — typically 10 years, renewable — without the need for a national sponsor. It has become one of the most sought-after residency programmes in the region.",
+          "Eligibility spans several categories: investors and entrepreneurs, highly skilled professionals, scientists and researchers, outstanding students and graduates, and certain talented individuals in culture, sport, and technology.",
+          "The application requires careful preparation — eligibility evidence, attested documents, and coordination with the relevant authority. Small errors are the most common cause of delay.",
+          "Our Golden Visa advisory assesses your eligibility, identifies the strongest route, and manages the process end-to-end, including family sponsorship. Book a consultation to see where you stand."
+        ]
+      },
+      {
+        "slug": "corporate-tax-uae-essentials",
+        "title": "UAE Corporate Tax: the essentials every business owner should know",
+        "excerpt": "Corporate tax is now part of doing business in the UAE. Here's a plain-English overview of who it affects and how to stay compliant.",
+        "date": "2026-01-30",
+        "readingTime": "5",
+        "category": "Compliance",
+        "body": [
+          "The UAE introduced a federal corporate tax that applies to business profits above a set threshold. For most owners, the key is understanding whether and how it applies to their entity, and keeping clean records.",
+          "Free zone businesses may benefit from preferential treatment on qualifying income, provided they meet substance and compliance requirements — an area where structure matters a great deal.",
+          "Registration, accurate bookkeeping, and timely filing are now essential. Getting your corporate structure and accounting aligned early avoids costly corrections later.",
+          "IBS Consultancy helps align your structure, registration, and compliance so corporate tax is a routine matter rather than a risk. Talk to us about a compliance review."
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Premium business setup and advisory services for entrepreneurs and investors in the UAE.",
+    "quickLinks": "Quick links",
+    "servicesLinks": "Services",
+    "contactLinks": "Get in touch",
+    "rights": "All rights reserved.",
+    "builtNote": "Business setup • Golden Visa • PRO services • Corporate structuring"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "menu": "Menu",
+    "close": "Close"
+  }
+}

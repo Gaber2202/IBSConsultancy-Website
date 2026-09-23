@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-arabic: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+    --font-display: 'Fraunces', Georgia, serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-ink-900 antialiased;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+
+  [dir='rtl'] body {
+    font-family: var(--font-arabic);
+  }
+
+  ::selection {
+    @apply bg-gold-200 text-ink-900;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+
+  [dir='rtl'] h1,
+  [dir='rtl'] h2,
+  [dir='rtl'] h3,
+  [dir='rtl'] h4 {
+    font-family: var(--font-arabic);
+    @apply font-bold;
+  }
+
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .container-tight {
+    @apply container max-w-[1120px];
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold-600;
+  }
+
+  [dir='rtl'] .eyebrow {
+    @apply tracking-normal;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gold-500;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold-500 text-ink-950 shadow-gold hover:bg-gold-400 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-dark {
+    @apply btn bg-ink-900 text-white hover:bg-ink-800 hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply btn border border-ink-200 bg-white text-ink-900 hover:border-ink-900 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost-light {
+    @apply btn border border-white/30 text-white hover:bg-white/10;
+  }
+
+  .card {
+    @apply rounded-2xl border border-ink-100 bg-white shadow-soft transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-card hover:border-gold-200;
+  }
+
+  .section {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .lead-text {
+    @apply text-lg leading-relaxed text-ink-500;
+  }
+
+  .link-gold {
+    @apply inline-flex items-center gap-1.5 font-semibold text-gold-600 transition-colors hover:text-gold-700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(11, 27, 43, 0.06) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  /* Reveal-on-scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* RTL logical flips for a few directional icons */
+[dir='rtl'] .rtl-flip {
+  transform: scaleX(-1);
+}
