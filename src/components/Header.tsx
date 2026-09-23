@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { Locale } from '@/i18n/config';
-import { pathFor, whatsappLink } from '@/lib/site';
+import { pathFor, type SiteContact } from '@/lib/site';
 import { Logo } from './Logo';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
@@ -18,7 +18,8 @@ interface NavDict {
   langLabel: string;
 }
 
-export function Header({ locale, nav }: { locale: Locale; nav: NavDict }) {
+export function Header({ locale, nav, contact }: { locale: Locale; nav: NavDict; contact: SiteContact }) {
+  const whatsappHref = `https://wa.me/${(contact.whatsapp || '').replace(/[^\d]/g, '')}`;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -126,7 +127,7 @@ export function Header({ locale, nav }: { locale: Locale; nav: NavDict }) {
           ))}
           <div className="mt-3 flex items-center gap-3">
             <LanguageSwitcher locale={locale} label={nav.langLabel} variant="dark" />
-            <a href={whatsappLink()} className="btn-outline flex-1" target="_blank" rel="noopener noreferrer">
+            <a href={whatsappHref} className="btn-outline flex-1" target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
           </div>

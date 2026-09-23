@@ -1,12 +1,15 @@
 import Link from 'next/link';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { pathFor, whatsappLink } from '@/lib/site';
+import { pathFor } from '@/lib/site';
+import { getSettings } from '@/lib/settings';
 import { IconArrow, IconChat } from './icons';
 import { Reveal } from './Reveal';
 
-export function CTASection({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export async function CTASection({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const { cta } = dict;
+  const { contact } = await getSettings();
+  const whatsappHref = `https://wa.me/${(contact.whatsapp || '').replace(/[^\d]/g, '')}`;
   return (
     <section className="section">
       <div className="container-tight">
@@ -16,7 +19,7 @@ export function CTASection({ locale, dict }: { locale: Locale; dict: Dictionary 
               className="absolute inset-0 opacity-20"
               style={{
                 backgroundImage:
-                  'radial-gradient(circle at 15% 30%, rgba(201,162,39,0.5), transparent 40%), radial-gradient(circle at 85% 70%, rgba(201,162,39,0.35), transparent 40%)',
+                  'radial-gradient(circle at 15% 30%, rgba(47,111,208,0.5), transparent 40%), radial-gradient(circle at 85% 70%, rgba(120,150,200,0.35), transparent 40%)',
               }}
             />
             <div className="relative mx-auto max-w-2xl">
@@ -27,7 +30,7 @@ export function CTASection({ locale, dict }: { locale: Locale; dict: Dictionary 
                   {cta.button}
                   <IconArrow width={18} height={18} />
                 </Link>
-                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn-ghost-light text-base">
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-ghost-light text-base">
                   <IconChat width={18} height={18} />
                   {cta.secondary}
                 </a>

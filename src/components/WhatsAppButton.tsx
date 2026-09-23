@@ -1,9 +1,10 @@
-import { whatsappLink } from '@/lib/site';
+import { contact } from '@/lib/site';
 
-export function WhatsAppButton({ label }: { label: string }) {
+export function WhatsAppButton({ label, whatsapp }: { label: string; whatsapp?: string }) {
+  const number = (whatsapp || contact.whatsapp).replace(/[^\d]/g, '');
   return (
     <a
-      href={whatsappLink()}
+      href={`https://wa.me/${number}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}

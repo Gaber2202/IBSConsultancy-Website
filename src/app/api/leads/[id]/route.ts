@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { updateLeadStatus, deleteLead, type LeadStatus } from '@/lib/leads';
+import { updateLeadStatus, deleteLead } from '@/lib/leads';
+import { isLeadStatus } from '@/lib/lead-status';
 import { verifySessionToken, authCookie } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-
-const VALID: LeadStatus[] = ['new', 'contacted', 'qualified', 'won', 'lost'];
 
 function authed(): boolean {
   const token = cookies().get(authCookie.name)?.value;
@@ -21,11 +20,12 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   } catch {
     return NextResponse.json({ ok: false, error: 'Invalid request' }, { status: 400 });
   }
-  const status = String(body.status ?? '') as LeadStatus;
-  if (!VALID.includes(status)) {
+  const status = String(body.status ?? '');
+  if (!isLeadStatus(status)) {
     return NextResponse.json({ ok: false, error: 'Invalid status' }, { status: 400 });
   }
-  const ok = await updateLeadStatus(params.id, status);
+  const lostReason = body.lostReason != null ? String(body.lostReason).slice(0, 500) : undefined;
+  const ok = await updateLeadStatus(params.id, status, lostReason);
   return NextResponse.json({ ok }, { status: ok ? 200 : 404 });
 }
 

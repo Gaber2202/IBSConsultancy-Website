@@ -8,7 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand — premium UAE consultancy: deep ink navy + refined gold
+        // Brand — matches the IBS "Intelligent Business Solutions" mark:
+        // deep ink navy + a cool steel-blue accent + brushed silver/platinum.
         ink: {
           DEFAULT: '#0B1B2B',
           50: '#F2F5F8',
@@ -23,20 +24,50 @@ const config: Config = {
           900: '#0B1B2B',
           950: '#060F19',
         },
-        gold: {
-          DEFAULT: '#C9A227',
-          50: '#FBF7EA',
-          100: '#F6EECB',
-          200: '#EEDB93',
-          300: '#E4C65C',
-          400: '#D6B23A',
-          500: '#C9A227',
-          600: '#A6841E',
-          700: '#7F651A',
-          800: '#5C4915',
-          900: '#3D300F',
+        // Primary accent — steel/azure blue drawn from the logo's navy.
+        steel: {
+          DEFAULT: '#2F6FD0',
+          50: '#EAF2FC',
+          100: '#D2E4F9',
+          200: '#A9C9F1',
+          300: '#77A6E6',
+          400: '#4A85DA',
+          500: '#2F6FD0',
+          600: '#245AAE',
+          700: '#1C4483',
+          800: '#16345F',
+          900: '#0F213C',
         },
-        sand: '#F7F5F0',
+        // Brushed silver / platinum from the logo's metallic lettering.
+        silver: {
+          DEFAULT: '#AEB8C4',
+          50: '#F7F8FA',
+          100: '#EDEFF2',
+          200: '#DCE0E6',
+          300: '#C3CAD3',
+          400: '#AEB8C4',
+          500: '#93A0AF',
+          600: '#75828F',
+          700: '#5A6472',
+          800: '#3F4753',
+          900: '#2A303A',
+        },
+        // Back-compat alias: legacy `gold-*` classes now render as steel-blue,
+        // keeping the whole UI on-brand without touching every component.
+        gold: {
+          DEFAULT: '#2F6FD0',
+          50: '#EAF2FC',
+          100: '#D2E4F9',
+          200: '#A9C9F1',
+          300: '#77A6E6',
+          400: '#4A85DA',
+          500: '#2F6FD0',
+          600: '#245AAE',
+          700: '#1C4483',
+          800: '#16345F',
+          900: '#0F213C',
+        },
+        sand: '#F4F7FA',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
@@ -46,7 +77,9 @@ const config: Config = {
       boxShadow: {
         soft: '0 2px 20px -8px rgba(11, 27, 43, 0.15)',
         card: '0 8px 40px -12px rgba(11, 27, 43, 0.18)',
-        gold: '0 10px 30px -10px rgba(201, 162, 39, 0.45)',
+        // Accent glow (kept under the legacy `gold` name used across the UI).
+        gold: '0 12px 34px -12px rgba(47, 111, 208, 0.5)',
+        steel: '0 12px 34px -12px rgba(47, 111, 208, 0.5)',
       },
       borderRadius: {
         xl: '1rem',

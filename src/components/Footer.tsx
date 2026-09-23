@@ -1,12 +1,34 @@
 import Link from 'next/link';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { pathFor, contact, whatsappLink } from '@/lib/site';
+import { pathFor, contact as defaultContact, type SiteContact } from '@/lib/site';
 import { Logo } from './Logo';
+import { IconFacebook, IconInstagram, IconLinkedIn, IconX, IconYouTube, IconTikTok } from './icons';
 
-export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export function Footer({
+  locale,
+  dict,
+  contact = defaultContact,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  contact?: SiteContact;
+}) {
   const year = new Date().getFullYear();
   const { footer, nav, services } = dict;
+  const whatsappHref = `https://wa.me/${(contact.whatsapp || '').replace(/[^\d]/g, '')}`;
+
+  const s = contact.social ?? {};
+  const socials = [
+    { key: 'facebook', href: s.facebook, label: 'Facebook', Icon: IconFacebook },
+    { key: 'instagram', href: s.instagram, label: 'Instagram', Icon: IconInstagram },
+    { key: 'linkedin', href: s.linkedin, label: 'LinkedIn', Icon: IconLinkedIn },
+    { key: 'x', href: s.x, label: 'X', Icon: IconX },
+    { key: 'youtube', href: s.youtube, label: 'YouTube', Icon: IconYouTube },
+    { key: 'tiktok', href: s.tiktok, label: 'TikTok', Icon: IconTikTok },
+  ].filter((item): item is { key: string; href: string; label: string; Icon: typeof IconFacebook } =>
+    Boolean(item.href),
+  );
 
   return (
     <footer className="bg-ink-950 text-white">
@@ -15,6 +37,23 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <div className="lg:col-span-1">
             <Logo locale={locale} variant="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">{footer.tagline}</p>
+            {socials.length > 0 && (
+              <ul className="mt-6 flex items-center gap-2.5">
+                {socials.map(({ key, href, label, Icon }) => (
+                  <li key={key}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-steel-400 hover:bg-white/5 hover:text-white"
+                    >
+                      <Icon width={17} height={17} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div>
@@ -59,7 +98,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 <a href={`mailto:${contact.email}`} className="hover:text-white">{contact.email}</a>
               </li>
               <li>
-                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-white">
                   WhatsApp
                 </a>
               </li>

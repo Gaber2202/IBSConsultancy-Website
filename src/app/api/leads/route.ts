@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { addLead, getLeads } from '@/lib/leads';
 import { verifySessionToken, authCookie } from '@/lib/auth';
+import { getSettings } from '@/lib/settings';
+import { sendLeadEmails } from '@/lib/email';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -33,6 +35,15 @@ export async function POST(request: NextRequest) {
   }
 
   const lead = await addLead({ name, email, phone, service, message, locale });
+
+  // Send notification emails (client confirmation + admin/sales alert) via the
+  // SMTP settings configured in the admin dashboard. Non-fatal.
+  try {
+    const { smtp } = await getSettings();
+    await sendLeadEmails(lead, smtp);
+  } catch {
+    // never block the submission on email failure
+  }
 
   // Optional: forward to a CRM / email / Slack webhook.
   if (process.env.LEAD_WEBHOOK_URL) {

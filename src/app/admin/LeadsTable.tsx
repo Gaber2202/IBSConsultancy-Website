@@ -1,17 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import type { Lead, LeadStatus } from '@/lib/leads';
-
-const STATUSES: LeadStatus[] = ['new', 'contacted', 'qualified', 'won', 'lost'];
-
-const statusStyles: Record<LeadStatus, string> = {
-  new: 'bg-blue-50 text-blue-700 border-blue-200',
-  contacted: 'bg-amber-50 text-amber-700 border-amber-200',
-  qualified: 'bg-violet-50 text-violet-700 border-violet-200',
-  won: 'bg-green-50 text-green-700 border-green-200',
-  lost: 'bg-ink-100 text-ink-500 border-ink-200',
-};
+import type { Lead } from '@/lib/leads';
+import { LEAD_STATUS_ORDER, LEAD_STATUS_META, type LeadStatus } from '@/lib/lead-status';
 
 function formatDate(iso: string) {
   return new Intl.DateTimeFormat('en-GB', {
@@ -23,11 +14,17 @@ function formatDate(iso: string) {
   }).format(new Date(iso));
 }
 
-export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
-  const [leads, setLeads] = useState<Lead[]>(initialLeads);
+export function LeadsTable({
+  leads,
+  changeStatus,
+  remove,
+}: {
+  leads: Lead[];
+  changeStatus: (id: string, status: LeadStatus, lostReason?: string) => void;
+  remove: (id: string) => void;
+}) {
   const [filter, setFilter] = useState<'all' | LeadStatus>('all');
   const [query, setQuery] = useState('');
-  const [busy, setBusy] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -43,36 +40,13 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
     });
   }, [leads, filter, query]);
 
-  async function changeStatus(id: string, status: LeadStatus) {
-    setBusy(id);
-    const prev = leads;
-    setLeads((ls) => ls.map((l) => (l.id === id ? { ...l, status } : l)));
-    try {
-      const res = await fetch(`/api/leads/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
-      if (!res.ok) throw new Error();
-    } catch {
-      setLeads(prev); // rollback
-    } finally {
-      setBusy(null);
-    }
-  }
-
-  async function remove(id: string) {
-    if (!confirm('Delete this lead permanently?')) return;
-    setBusy(id);
-    const prev = leads;
-    setLeads((ls) => ls.filter((l) => l.id !== id));
-    try {
-      const res = await fetch(`/api/leads/${id}`, { method: 'DELETE' });
-      if (!res.ok) throw new Error();
-    } catch {
-      setLeads(prev);
-    } finally {
-      setBusy(null);
+  function onStatusSelect(lead: Lead, status: LeadStatus) {
+    if (status === 'lost') {
+      const reason = window.prompt('Reason for marking this lead as lost:', lead.lostReason ?? '');
+      if (reason === null) return; // cancelled
+      changeStatus(lead.id, status, reason.trim());
+    } else {
+      changeStatus(lead.id, status);
     }
   }
 
@@ -84,9 +58,9 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
           <FilterChip active={filter === 'all'} onClick={() => setFilter('all')}>
             All ({leads.length})
           </FilterChip>
-          {STATUSES.map((s) => (
+          {LEAD_STATUS_ORDER.map((s) => (
             <FilterChip key={s} active={filter === s} onClick={() => setFilter(s)}>
-              {s} ({leads.filter((l) => l.status === s).length})
+              {LEAD_STATUS_META[s].label} ({leads.filter((l) => l.status === s).length})
             </FilterChip>
           ))}
         </div>
@@ -95,7 +69,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
           placeholder="Search name, email, phone…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-500/30 sm:w-64"
+          className="w-full rounded-lg border border-ink-200 px-3 py-2 text-sm focus:border-steel-500 focus:outline-none focus:ring-2 focus:ring-steel-500/30 sm:w-64"
         />
       </div>
 
@@ -119,17 +93,22 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                 <tr key={lead.id} className="border-b border-ink-50 align-top hover:bg-ink-50/50">
                   <td className="px-4 py-4">
                     <div className="font-semibold text-ink-900">{lead.name}</div>
-                    <a href={`mailto:${lead.email}`} className="block text-ink-500 hover:text-gold-700" dir="ltr">
+                    <a href={`mailto:${lead.email}`} className="block text-ink-500 hover:text-steel-700" dir="ltr">
                       {lead.email}
                     </a>
-                    <a href={`tel:${lead.phone}`} className="block text-ink-500 hover:text-gold-700" dir="ltr">
+                    <a href={`tel:${lead.phone}`} className="block text-ink-500 hover:text-steel-700" dir="ltr">
                       {lead.phone}
                     </a>
                     {lead.message && (
                       <details className="mt-1">
-                        <summary className="cursor-pointer text-xs text-gold-700">Message</summary>
+                        <summary className="cursor-pointer text-xs text-steel-700">Message</summary>
                         <p className="mt-1 max-w-xs whitespace-pre-wrap text-ink-600">{lead.message}</p>
                       </details>
+                    )}
+                    {lead.status === 'lost' && lead.lostReason && (
+                      <p className="mt-1 max-w-xs text-xs text-rose-600">
+                        <span className="font-medium">Lost reason:</span> {lead.lostReason}
+                      </p>
                     )}
                   </td>
                   <td className="px-4 py-4 text-ink-700">
@@ -140,13 +119,12 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                   <td className="px-4 py-4">
                     <select
                       value={lead.status}
-                      disabled={busy === lead.id}
-                      onChange={(e) => changeStatus(lead.id, e.target.value as LeadStatus)}
-                      className={`rounded-full border px-2.5 py-1 text-xs font-medium capitalize outline-none ${statusStyles[lead.status]}`}
+                      onChange={(e) => onStatusSelect(lead, e.target.value as LeadStatus)}
+                      className={`rounded-full border px-2.5 py-1 text-xs font-medium outline-none ${LEAD_STATUS_META[lead.status].chip}`}
                     >
-                      {STATUSES.map((s) => (
+                      {LEAD_STATUS_ORDER.map((s) => (
                         <option key={s} value={s} className="bg-white text-ink-900">
-                          {s}
+                          {LEAD_STATUS_META[s].label}
                         </option>
                       ))}
                     </select>
@@ -154,8 +132,7 @@ export function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                   <td className="px-4 py-4 text-right">
                     <button
                       onClick={() => remove(lead.id)}
-                      disabled={busy === lead.id}
-                      className="text-xs font-medium text-red-500 hover:text-red-700 disabled:opacity-50"
+                      className="text-xs font-medium text-red-500 hover:text-red-700"
                     >
                       Delete
                     </button>
@@ -182,7 +159,7 @@ function FilterChip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full border px-3 py-1.5 text-xs font-medium capitalize transition-colors ${
+      className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
         active ? 'border-ink-900 bg-ink-900 text-white' : 'border-ink-200 text-ink-600 hover:border-ink-400'
       }`}
     >

@@ -63,7 +63,7 @@
   }
 
   .btn-primary {
-    @apply btn bg-gold-500 text-ink-950 shadow-gold hover:bg-gold-400 hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn bg-steel-500 text-white shadow-gold hover:bg-steel-600 hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-dark {

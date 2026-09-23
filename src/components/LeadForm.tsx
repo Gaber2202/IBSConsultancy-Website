@@ -13,11 +13,15 @@ export function LeadForm({
   locale,
   dict,
   defaultService,
+  services,
 }: {
   locale: Locale;
   dict: FormDict;
   defaultService?: string;
+  /** Admin-managed service options; falls back to dictionary defaults. */
+  services?: string[];
 }) {
+  const serviceOptions = services && services.length ? services : dict.serviceOptions;
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Errors>({});
 
@@ -131,7 +135,7 @@ export function LeadForm({
           <option value="" disabled>
             {dict.servicePlaceholder}
           </option>
-          {dict.serviceOptions.map((opt) => (
+          {serviceOptions.map((opt) => (
             <option key={opt} value={opt}>
               {opt}
             </option>

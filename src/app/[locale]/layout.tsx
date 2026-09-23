@@ -4,6 +4,7 @@ import '../globals.css';
 import { locales, localeConfig, isLocale, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { SITE_URL, absoluteUrl } from '@/lib/site';
+import { getSettings } from '@/lib/settings';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -45,7 +46,12 @@ export async function generateMetadata({
     },
     twitter: { card: 'summary_large_image' },
     robots: { index: true, follow: true },
-    icons: { icon: '/logo.svg' },
+    // Favicon comes from the app/icon.svg file convention; this adds the
+    // app-icon for iOS home-screen installs.
+    icons: {
+      icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+      apple: [{ url: '/icon-maskable.svg' }],
+    },
   };
 }
 
@@ -60,6 +66,7 @@ export default async function LocaleLayout({
   const locale = params.locale as Locale;
   const { dir, htmlLang } = localeConfig[locale];
   const dict = await getDictionary(locale);
+  const { contact } = await getSettings();
 
   return (
     <html lang={htmlLang} dir={dir}>
@@ -73,12 +80,12 @@ export default async function LocaleLayout({
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-2 focus:rounded focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-white">
           {dict.common.skipToContent}
         </a>
-        <Header locale={locale} nav={dict.nav} />
+        <Header locale={locale} nav={dict.nav} contact={contact} />
         <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer locale={locale} dict={dict} />
-        <WhatsAppButton label={dict.cta.secondary} />
+        <Footer locale={locale} dict={dict} contact={contact} />
+        <WhatsAppButton label={dict.cta.secondary} whatsapp={contact.whatsapp} />
       </body>
     </html>
   );

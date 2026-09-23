@@ -24,8 +24,8 @@ yarn-error.log*
 .env
 .env*.local
 
-# lead data (file-store fallback)
-/data/leads.json
+# local data store (leads + settings incl. SMTP password) — never commit
+/data/
 
 # typescript
 *.tsbuildinfo

@@ -2,8 +2,9 @@ import 'server-only';
 import { promises as fs } from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { LEAD_STATUS_ORDER, type LeadStatus } from './lead-status';
 
-export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'won' | 'lost';
+export type { LeadStatus };
 
 export interface Lead {
   id: string;
@@ -16,6 +17,8 @@ export interface Lead {
   status: LeadStatus;
   createdAt: string;
   source?: string;
+  /** Populated only when status === 'lost'. */
+  lostReason?: string;
 }
 
 export interface NewLeadInput {
@@ -119,11 +122,20 @@ export async function addLead(input: NewLeadInput): Promise<Lead> {
   return lead;
 }
 
-export async function updateLeadStatus(id: string, status: LeadStatus): Promise<boolean> {
+export async function updateLeadStatus(
+  id: string,
+  status: LeadStatus,
+  lostReason?: string,
+): Promise<boolean> {
   const leads = useKV ? await kvGet() : await readFileLeads();
   const idx = leads.findIndex((l) => l.id === id);
   if (idx === -1) return false;
   leads[idx].status = status;
+  if (status === 'lost') {
+    leads[idx].lostReason = (lostReason ?? '').trim() || leads[idx].lostReason || '';
+  } else {
+    delete leads[idx].lostReason;
+  }
   if (useKV) await kvSet(leads);
   else await writeFileLeads(leads);
   return true;
@@ -139,13 +151,9 @@ export async function deleteLead(id: string): Promise<boolean> {
 }
 
 export function summarize(leads: Lead[]) {
-  const byStatus: Record<LeadStatus, number> = {
-    new: 0,
-    contacted: 0,
-    qualified: 0,
-    won: 0,
-    lost: 0,
-  };
+  const byStatus = Object.fromEntries(
+    LEAD_STATUS_ORDER.map((s) => [s, 0]),
+  ) as Record<LeadStatus, number>;
   for (const l of leads) byStatus[l.status] = (byStatus[l.status] ?? 0) + 1;
 
   const now = new Date();

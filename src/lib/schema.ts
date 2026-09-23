@@ -35,7 +35,7 @@ export function organizationSchema(locale: Locale, dict: Dictionary) {
       opens: '09:00',
       closes: '18:00',
     },
-    sameAs: [] as string[],
+    sameAs: Object.values(contact.social ?? {}).filter(Boolean) as string[],
   };
 }
 

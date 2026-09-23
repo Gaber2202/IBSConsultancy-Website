@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { isLocale, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
-import { absoluteUrl, contact, whatsappLink, alternatesFor } from '@/lib/site';
+import { absoluteUrl, alternatesFor } from '@/lib/site';
+import { getSettings, getActiveServiceLabels } from '@/lib/settings';
 import { breadcrumbSchema, organizationSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { PageHeader } from '@/components/PageHeader';
@@ -23,10 +24,15 @@ export default async function ContactPage({ params }: { params: { locale: string
   const dict = await getDictionary(locale);
   const c = dict.contact;
 
+  const settings = await getSettings();
+  const contact = settings.contact;
+  const services = await getActiveServiceLabels(locale);
+  const whatsappHref = `https://wa.me/${contact.whatsapp}`;
+
   const infoItems = [
     { icon: IconPhone, label: c.phoneLabel, value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}`, ltr: true },
     { icon: IconMail, label: c.emailLabel, value: contact.email, href: `mailto:${contact.email}`, ltr: true },
-    { icon: IconChat, label: c.whatsappLabel, value: 'wa.me', href: whatsappLink(), ltr: true, external: true },
+    { icon: IconChat, label: c.whatsappLabel, value: 'wa.me', href: whatsappHref, ltr: true, external: true },
     { icon: IconPin, label: c.addressLabel, value: c.addressValue, href: undefined, ltr: false },
     { icon: IconClock, label: c.hoursLabel, value: c.hoursValue, href: undefined, ltr: false },
   ];
@@ -105,7 +111,7 @@ export default async function ContactPage({ params }: { params: { locale: string
             <h2 className="text-2xl font-bold text-ink-900">{c.form.title}</h2>
             <p className="mt-2 text-sm text-ink-500">{c.subtitle}</p>
             <div className="mt-6">
-              <LeadForm locale={locale} dict={c.form} />
+              <LeadForm locale={locale} dict={c.form} services={services} />
             </div>
           </div>
         </div>
