@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { pathFor, contact as defaultContact, type SiteContact } from '@/lib/site';
+import { pathFor, type SiteContact } from '@/lib/site';
 import { Logo } from './Logo';
 import { IconFacebook, IconInstagram, IconLinkedIn, IconX, IconYouTube, IconTikTok } from './icons';
 
 export function Footer({
   locale,
   dict,
-  contact = defaultContact,
+  contact,
 }: {
   locale: Locale;
   dict: Dictionary;
-  contact?: SiteContact;
+  contact: SiteContact;
 }) {
   const year = new Date().getFullYear();
   const { footer, nav, services } = dict;

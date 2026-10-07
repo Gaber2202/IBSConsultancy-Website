@@ -13,6 +13,9 @@ import { Analytics } from '@/components/Analytics';
 const GOOGLE_FONTS_HREF =
   'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';
 
+// Contact phone / WhatsApp / email come from the admin panel at request time.
+export const dynamic = 'force-dynamic';
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { isLocale, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { absoluteUrl, alternatesFor } from '@/lib/site';
+import { getSettings } from '@/lib/settings';
 import { breadcrumbSchema, organizationSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { PageHeader } from '@/components/PageHeader';
@@ -25,12 +26,13 @@ export default async function AboutPage({ params }: { params: { locale: string }
   const locale = (isLocale(params.locale) ? params.locale : 'en') as Locale;
   const dict = await getDictionary(locale);
   const { about } = dict;
+  const { contact } = await getSettings();
 
   return (
     <>
       <JsonLd
         data={[
-          organizationSchema(locale, dict),
+          organizationSchema(locale, dict, contact),
           breadcrumbSchema([
             { name: dict.nav.home, url: absoluteUrl(locale) },
             { name: dict.nav.about, url: absoluteUrl(`${locale}/about`) },

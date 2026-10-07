@@ -106,7 +106,10 @@ All site copy lives in two JSON dictionaries — **no code editing required**:
 
 Both files share the **same keys**. Edit services, stats, testimonials, blog posts, contact details, and SEO titles/descriptions there. To add a blog post, add an entry to `blog.posts` in **both** files (same `slug`).
 
-Company contact details also come from the `NEXT_PUBLIC_*` env vars (§3).
+Company contact details (phone, WhatsApp, email, social) are managed in **Admin → Contact info**.
+Those values are stored durably (Vercel Blob when `BLOB_READ_WRITE_TOKEN` is present) and shown
+live in the header, footer, contact page, WhatsApp button, and CTAs. `NEXT_PUBLIC_*` env vars (§3)
+are only the fallback defaults before anything is saved in admin.
 
 ---
 

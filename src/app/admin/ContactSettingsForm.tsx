@@ -48,7 +48,8 @@ export function ContactSettingsForm({ initial }: { initial: ContactSettings }) {
     <div className="max-w-xl rounded-xl border border-ink-200 bg-white p-6">
       <h2 className="text-lg font-bold text-ink-900">Contact information</h2>
       <p className="mt-1 text-sm text-ink-500">
-        Shown in the header, footer, contact page and WhatsApp button across the site.
+        Saved values update the live site immediately — header, footer, contact page, WhatsApp
+        button, CTA links, and structured data.
       </p>
 
       <div className="mt-6 space-y-4">

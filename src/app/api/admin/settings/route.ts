@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { revalidatePath } from 'next/cache';
 import crypto from 'crypto';
 import { verifySessionToken, authCookie } from '@/lib/auth';
 import {
@@ -14,6 +15,15 @@ import {
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+
+/** Bust cached marketing pages so admin contact/service changes show immediately. */
+function revalidatePublicSite() {
+  revalidatePath('/', 'layout');
+  revalidatePath('/en', 'layout');
+  revalidatePath('/ar', 'layout');
+  revalidatePath('/en/contact');
+  revalidatePath('/ar/contact');
+}
 
 function authed(): boolean {
   return verifySessionToken(cookies().get(authCookie.name)?.value);
@@ -55,6 +65,7 @@ export async function PUT(request: NextRequest) {
         },
       };
       const settings = await saveContact(contact);
+      revalidatePublicSite();
       return NextResponse.json({ ok: true, settings });
     }
 
@@ -69,6 +80,7 @@ export async function PUT(request: NextRequest) {
         }))
         .filter((s: ServiceOption) => s.en || s.ar);
       const settings = await saveServices(services);
+      revalidatePublicSite();
       return NextResponse.json({ ok: true, settings });
     }
 
@@ -89,6 +101,7 @@ export async function PUT(request: NextRequest) {
         notifyTeam: d.notifyTeam !== false,
       };
       const settings = await saveSmtp(smtp);
+      revalidatePublicSite();
       return NextResponse.json({ ok: true, settings });
     }
 

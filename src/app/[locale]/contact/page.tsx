@@ -41,7 +41,7 @@ export default async function ContactPage({ params }: { params: { locale: string
     <>
       <JsonLd
         data={[
-          organizationSchema(locale, dict),
+          organizationSchema(locale, dict, contact),
           breadcrumbSchema([
             { name: dict.nav.home, url: absoluteUrl(locale) },
             { name: dict.nav.contact, url: absoluteUrl(`${locale}/contact`) },
