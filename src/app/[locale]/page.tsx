@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { isLocale, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { absoluteUrl, alternatesFor } from '@/lib/site';
+import { getSettings } from '@/lib/settings';
 import { organizationSchema, servicesSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { Hero } from '@/components/Hero';
 import { Stats } from '@/components/Stats';
+import { HomeTools } from '@/components/tools/HomeTools';
 import { ServicesPreview } from '@/components/ServicesGrid';
 import { AboutTeaser } from '@/components/AboutTeaser';
 import { WhyUs } from '@/components/WhyUs';
@@ -26,12 +28,14 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   const locale = (isLocale(params.locale) ? params.locale : 'en') as Locale;
   const dict = await getDictionary(locale);
+  const { contact } = await getSettings();
 
   return (
     <>
-      <JsonLd data={[organizationSchema(locale, dict), servicesSchema(locale, dict)]} />
+      <JsonLd data={[organizationSchema(locale, dict, contact), servicesSchema(locale, dict)]} />
       <Hero locale={locale} dict={dict} />
       <Stats dict={dict} />
+      <HomeTools locale={locale} />
       <ServicesPreview locale={locale} dict={dict} />
       <AboutTeaser locale={locale} dict={dict} />
       <WhyUs dict={dict} />

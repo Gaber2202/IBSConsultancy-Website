@@ -43,6 +43,9 @@ Requirements: **Node.js 18.17+ (Node 20/22 recommended)**.
 | `/` | Redirects to `/en` or `/ar` based on the browser language |
 | `/en`, `/ar` | Home |
 | `/en/about`, `/en/services`, `/en/blog`, `/en/contact` | Marketing pages (and `/ar/...`) |
+| `/en/calculator`, `/en/free-zones`, `/en/golden-visa-eligibility`, `/en/mainland-vs-free-zone`, `/en/faq` | Lead tools (Phase B) |
+| `/en/free-zones/<slug>` | Free zone detail pages |
+| `/en/thank-you` | Post-lead conversion page (noindex) |
 | `/en/blog/<slug>` | Blog articles |
 | `/admin/login` | Admin sign‑in |
 | `/admin` | Lead dashboard (protected) |
@@ -60,7 +63,7 @@ Set these in `.env.local` (local) and in your Vercel project settings (productio
 |----------|----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | ✅ | Canonical base URL, e.g. `https://ibsconsultancy.ae` (no trailing slash) |
 | `NEXT_PUBLIC_PHONE` | ✅ | Phone number shown on the site |
-| `NEXT_PUBLIC_WHATSAPP` | ✅ | WhatsApp number, digits only (e.g. `971500000000`) |
+| `NEXT_PUBLIC_WHATSAPP` | ✅ | WhatsApp number, digits only (e.g. `971545721019`) |
 | `NEXT_PUBLIC_EMAIL` | ✅ | Contact email |
 | `ADMIN_USERNAME` | ✅ | Admin dashboard username |
 | `ADMIN_PASSWORD` | ✅ | Admin dashboard password (use a strong one) |
@@ -103,7 +106,10 @@ All site copy lives in two JSON dictionaries — **no code editing required**:
 
 Both files share the **same keys**. Edit services, stats, testimonials, blog posts, contact details, and SEO titles/descriptions there. To add a blog post, add an entry to `blog.posts` in **both** files (same `slug`).
 
-Company contact details also come from the `NEXT_PUBLIC_*` env vars (§3).
+Company contact details (phone, WhatsApp, email, social) are managed in **Admin → Contact info**.
+Those values are stored durably (Vercel Blob when `BLOB_READ_WRITE_TOKEN` is present) and shown
+live in the header, footer, contact page, WhatsApp button, and CTAs. `NEXT_PUBLIC_*` env vars (§3)
+are only the fallback defaults before anything is saved in admin.
 
 ---
 
@@ -120,9 +126,10 @@ The site currently uses a clean SVG monogram generated to match IBS's navy + gol
 
 ## 8. Design system
 
-- **Colours:** deep ink navy (`ink`) + refined gold (`gold`) — defined in `tailwind.config.ts`.
-- **Fonts:** Fraunces (display serif), Inter (Latin body), IBM Plex Sans Arabic (Arabic) — loaded via Google Fonts.
+- **Colours:** deep ink navy (`ink`) + steel blue accent (`steel` / legacy `gold` alias) — defined in `tailwind.config.ts`.
+- **Fonts:** Roboto (Latin), IBM Plex Sans Arabic (Arabic) — loaded via Google Fonts.
 - **Components:** all in `src/components/`. Sections (`Hero`, `Stats`, `ServicesGrid`, `WhyUs`, `Process`, `Testimonials`, `CTASection`) are reused across pages.
+- **Conversion:** contact form redirects to `/[locale]/thank-you` and pushes a `generate_lead` dataLayer event when `NEXT_PUBLIC_GTM_ID` is set.
 
 ---
 

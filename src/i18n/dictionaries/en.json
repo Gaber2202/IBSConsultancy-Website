@@ -26,6 +26,10 @@
     "home": "Home",
     "about": "About",
     "services": "Services",
+    "tools": "Tools",
+    "calculator": "Calculator",
+    "freeZones": "Free Zones",
+    "faq": "FAQ",
     "blog": "Insights",
     "contact": "Contact",
     "cta": "Get Free Consultation",
@@ -33,10 +37,11 @@
   },
   "hero": {
     "eyebrow": "Elevate Your Business",
+    "brandLine": "Intelligent Business Solutions",
     "title": "We design how your business operates in the UAE",
-    "subtitle": "Transformative, end-to-end strategies for entrepreneurs and investors looking to establish a premium presence in the UAE market — backed by deep local expertise.",
+    "subtitle": "End-to-end setup, compliance, and growth support for founders and investors building a premium UAE presence.",
     "ctaPrimary": "Get Free Consultation",
-    "ctaSecondary": "Explore Services",
+    "ctaSecondary": "Calculate Setup Cost",
     "trust": "Trusted by founders setting up across Dubai, Abu Dhabi & the UAE"
   },
   "stats": {
@@ -301,6 +306,14 @@
     "contactLinks": "Get in touch",
     "rights": "All rights reserved.",
     "builtNote": "Business setup • Golden Visa • PRO services • Corporate structuring"
+  },
+  "thankYou": {
+    "metaTitle": "Thank you | IBS Consultancy",
+    "metaDescription": "We've received your consultation request. An IBS advisor will contact you shortly.",
+    "title": "Thank you — request received",
+    "body": "One of our advisors will contact you within one business day. For anything urgent, message us on WhatsApp.",
+    "backHome": "Back to home",
+    "whatsapp": "Chat on WhatsApp"
   },
   "common": {
     "skipToContent": "Skip to content",

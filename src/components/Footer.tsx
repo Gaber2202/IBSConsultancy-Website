@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { pathFor, contact as defaultContact, type SiteContact } from '@/lib/site';
+import { pathFor, type SiteContact } from '@/lib/site';
 import { Logo } from './Logo';
 import { IconFacebook, IconInstagram, IconLinkedIn, IconX, IconYouTube, IconTikTok } from './icons';
 
 export function Footer({
   locale,
   dict,
-  contact = defaultContact,
+  contact,
 }: {
   locale: Locale;
   dict: Dictionary;
-  contact?: SiteContact;
+  contact: SiteContact;
 }) {
   const year = new Date().getFullYear();
   const { footer, nav, services } = dict;
@@ -64,6 +64,9 @@ export function Footer({
               <li><Link href={pathFor(locale)} className="hover:text-white">{nav.home}</Link></li>
               <li><Link href={pathFor(locale, 'about')} className="hover:text-white">{nav.about}</Link></li>
               <li><Link href={pathFor(locale, 'services')} className="hover:text-white">{nav.services}</Link></li>
+              <li><Link href={pathFor(locale, 'calculator')} className="hover:text-white">{nav.calculator}</Link></li>
+              <li><Link href={pathFor(locale, 'free-zones')} className="hover:text-white">{nav.freeZones}</Link></li>
+              <li><Link href={pathFor(locale, 'faq')} className="hover:text-white">{nav.faq}</Link></li>
               <li><Link href={pathFor(locale, 'blog')} className="hover:text-white">{nav.blog}</Link></li>
               <li><Link href={pathFor(locale, 'contact')} className="hover:text-white">{nav.contact}</Link></li>
             </ul>

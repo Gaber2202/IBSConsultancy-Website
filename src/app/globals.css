@@ -4,9 +4,12 @@
 
 @layer base {
   :root {
-    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-sans: 'Roboto', system-ui, sans-serif;
     --font-arabic: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-    --font-display: 'Fraunces', Georgia, serif;
+    --font-display: 'Roboto', system-ui, sans-serif;
+    --surface: #f4f7fa;
+    --ink: #0b1b2b;
+    --steel: #2f6fd0;
   }
 
   html {
@@ -15,8 +18,9 @@
   }
 
   body {
-    @apply bg-white text-ink-900 antialiased;
-    font-feature-settings: 'ss01', 'cv01';
+    @apply bg-sand text-ink-900 antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
   }
 
   [dir='rtl'] body {
@@ -24,11 +28,14 @@
   }
 
   ::selection {
-    @apply bg-gold-200 text-ink-900;
+    @apply bg-steel-200 text-ink-900;
   }
 
-  h1, h2, h3, h4 {
-    @apply font-display tracking-tight;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-sans tracking-tight;
     text-wrap: balance;
   }
 
@@ -37,7 +44,7 @@
   [dir='rtl'] h3,
   [dir='rtl'] h4 {
     font-family: var(--font-arabic);
-    @apply font-bold;
+    @apply font-bold tracking-normal;
   }
 
   a {
@@ -51,7 +58,7 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold-600;
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-steel-600;
   }
 
   [dir='rtl'] .eyebrow {
@@ -59,11 +66,11 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gold-500;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-steel-500;
   }
 
   .btn-primary {
-    @apply btn bg-steel-500 text-white shadow-gold hover:bg-steel-600 hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn bg-steel-500 text-white shadow-steel hover:bg-steel-600 hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-dark {
@@ -71,19 +78,19 @@
   }
 
   .btn-outline {
-    @apply btn border border-ink-200 bg-white text-ink-900 hover:border-ink-900 hover:-translate-y-0.5;
+    @apply btn border border-ink-200 bg-white/80 text-ink-900 backdrop-blur-sm hover:border-ink-900 hover:-translate-y-0.5;
   }
 
   .btn-ghost-light {
-    @apply btn border border-white/30 text-white hover:bg-white/10;
+    @apply btn border border-white/30 bg-white/5 text-white backdrop-blur-sm hover:bg-white/10;
   }
 
   .card {
-    @apply rounded-2xl border border-ink-100 bg-white shadow-soft transition-all duration-300;
+    @apply rounded-2xl border border-ink-100/80 bg-white shadow-soft transition-all duration-300;
   }
 
   .card-hover {
-    @apply hover:-translate-y-1 hover:shadow-card hover:border-gold-200;
+    @apply hover:-translate-y-1 hover:border-steel-200 hover:shadow-card;
   }
 
   .section {
@@ -95,7 +102,24 @@
   }
 
   .link-gold {
-    @apply inline-flex items-center gap-1.5 font-semibold text-gold-600 transition-colors hover:text-gold-700;
+    @apply inline-flex items-center gap-1.5 font-semibold text-steel-600 transition-colors hover:text-steel-700;
+  }
+
+  .surface-panel {
+    @apply rounded-3xl border border-ink-100/70 bg-white/80 shadow-soft backdrop-blur-sm;
+  }
+
+  .hero-atmosphere {
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 20%, rgba(47, 111, 208, 0.35), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 85% 10%, rgba(174, 184, 196, 0.18), transparent 50%),
+      linear-gradient(160deg, #060f19 0%, #0b1b2b 42%, #12263d 100%);
+  }
+
+  .mesh-light {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(11, 27, 43, 0.055) 1px, transparent 0);
+    background-size: 28px 28px;
   }
 }
 
@@ -109,11 +133,12 @@
     background-size: 32px 32px;
   }
 
-  /* Reveal-on-scroll */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
 
@@ -131,10 +156,14 @@
     html {
       scroll-behavior: auto;
     }
+    .animate-ken-burns,
+    .animate-fade-up,
+    .animate-fade-in {
+      animation: none !important;
+    }
   }
 }
 
-/* RTL logical flips for a few directional icons */
 [dir='rtl'] .rtl-flip {
   transform: scaleX(-1);
 }

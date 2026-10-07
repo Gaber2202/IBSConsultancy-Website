@@ -1,7 +1,6 @@
-import { contact } from '@/lib/site';
-
-export function WhatsAppButton({ label, whatsapp }: { label: string; whatsapp?: string }) {
-  const number = (whatsapp || contact.whatsapp).replace(/[^\d]/g, '');
+export function WhatsAppButton({ label, whatsapp }: { label: string; whatsapp: string }) {
+  const number = (whatsapp || '').replace(/[^\d]/g, '');
+  if (!number) return null;
   return (
     <a
       href={`https://wa.me/${number}`}

@@ -32,7 +32,7 @@ export default async function ContactPage({ params }: { params: { locale: string
   const infoItems = [
     { icon: IconPhone, label: c.phoneLabel, value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}`, ltr: true },
     { icon: IconMail, label: c.emailLabel, value: contact.email, href: `mailto:${contact.email}`, ltr: true },
-    { icon: IconChat, label: c.whatsappLabel, value: 'wa.me', href: whatsappHref, ltr: true, external: true },
+    { icon: IconChat, label: c.whatsappLabel, value: `+${contact.whatsapp}`, href: whatsappHref, ltr: true, external: true },
     { icon: IconPin, label: c.addressLabel, value: c.addressValue, href: undefined, ltr: false },
     { icon: IconClock, label: c.hoursLabel, value: c.hoursValue, href: undefined, ltr: false },
   ];
@@ -41,7 +41,7 @@ export default async function ContactPage({ params }: { params: { locale: string
     <>
       <JsonLd
         data={[
-          organizationSchema(locale, dict),
+          organizationSchema(locale, dict, contact),
           breadcrumbSchema([
             { name: dict.nav.home, url: absoluteUrl(locale) },
             { name: dict.nav.contact, url: absoluteUrl(`${locale}/contact`) },
@@ -60,7 +60,7 @@ export default async function ContactPage({ params }: { params: { locale: string
                 const Icon = item.icon;
                 const content = (
                   <div className="flex items-start gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ink-950 text-gold-400">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-ink-950 text-steel-300">
                       <Icon width={20} height={20} />
                     </span>
                     <span>
@@ -107,8 +107,8 @@ export default async function ContactPage({ params }: { params: { locale: string
           </div>
 
           {/* Lead form */}
-          <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-card sm:p-8">
-            <h2 className="text-2xl font-bold text-ink-900">{c.form.title}</h2>
+          <div className="surface-panel p-6 sm:p-8">
+            <h2 className="text-2xl font-semibold text-ink-900">{c.form.title}</h2>
             <p className="mt-2 text-sm text-ink-500">{c.subtitle}</p>
             <div className="mt-6">
               <LeadForm locale={locale} dict={c.form} services={services} />

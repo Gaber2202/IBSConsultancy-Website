@@ -1,8 +1,12 @@
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { SITE_URL, absoluteUrl, contact } from './site';
+import { SITE_URL, absoluteUrl, contact as defaultContact, type SiteContact } from './site';
 
-export function organizationSchema(locale: Locale, dict: Dictionary) {
+export function organizationSchema(
+  locale: Locale,
+  dict: Dictionary,
+  contact: SiteContact = defaultContact,
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',

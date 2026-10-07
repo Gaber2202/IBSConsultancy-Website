@@ -2,9 +2,21 @@ import type { MetadataRoute } from 'next';
 import { locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { SITE_URL } from '@/lib/site';
+import zones from '@/data/free-zones.json';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPaths = ['', 'about', 'services', 'blog', 'contact'];
+  const staticPaths = [
+    '',
+    'about',
+    'services',
+    'blog',
+    'contact',
+    'calculator',
+    'free-zones',
+    'golden-visa-eligibility',
+    'mainland-vs-free-zone',
+    'faq',
+  ];
   const entries: MetadataRoute.Sitemap = [];
 
   for (const locale of locales) {
@@ -14,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url,
         lastModified: new Date(),
         changeFrequency: path === '' ? 'weekly' : 'monthly',
-        priority: path === '' ? 1 : 0.8,
+        priority: path === '' ? 1 : path === 'contact' || path === 'calculator' ? 0.9 : 0.8,
         alternates: {
           languages: {
             en: `${SITE_URL}/en${path ? `/${path}` : ''}`,
@@ -24,7 +36,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
 
-    // Blog posts
+    for (const zone of zones) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/free-zones/${zone.id}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+        alternates: {
+          languages: {
+            en: `${SITE_URL}/en/free-zones/${zone.id}`,
+            ar: `${SITE_URL}/ar/free-zones/${zone.id}`,
+          },
+        },
+      });
+    }
+
     const dict = await getDictionary(locale);
     for (const post of dict.blog.posts) {
       entries.push({

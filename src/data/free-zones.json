@@ -1,0 +1,305 @@
+[
+  {
+    "id": "ifza",
+    "name": "IFZA",
+    "emirate": "Dubai",
+    "fromAED": 12900,
+    "bestFor": {
+      "en": "Consultancy, services and general trading with a Dubai address",
+      "ar": "الاستشارات والخدمات والتجارة العامة بعنوان في دبي"
+    },
+    "categories": [
+      "consultancy",
+      "trading",
+      "professional",
+      "marketing",
+      "technology"
+    ],
+    "visas": {
+      "en": "Package-based, flexible visa allocation",
+      "ar": "حصص تأشيرات مرنة حسب الباقة"
+    },
+    "offices": [
+      "flexi",
+      "shared",
+      "physical"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "meydan",
+    "name": "Meydan Free Zone",
+    "emirate": "Dubai",
+    "fromAED": 12500,
+    "bestFor": {
+      "en": "E-commerce, digital businesses and solo founders",
+      "ar": "التجارة الإلكترونية والأعمال الرقمية والمؤسسين الأفراد"
+    },
+    "categories": [
+      "ecommerce",
+      "consultancy",
+      "technology",
+      "marketing"
+    ],
+    "visas": {
+      "en": "Package-based",
+      "ar": "حسب الباقة"
+    },
+    "offices": [
+      "flexi",
+      "shared",
+      "physical"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "dmcc",
+    "name": "DMCC",
+    "emirate": "Dubai",
+    "fromAED": 22000,
+    "bestFor": {
+      "en": "Trading, commodities and established SMEs",
+      "ar": "التجارة والسلع والشركات الصغيرة والمتوسطة القائمة"
+    },
+    "categories": [
+      "trading",
+      "general-trading",
+      "technology"
+    ],
+    "visas": {
+      "en": "Scales with office size",
+      "ar": "تتدرج مع حجم المكتب"
+    },
+    "offices": [
+      "flexi",
+      "shared",
+      "physical"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "jafza",
+    "name": "JAFZA",
+    "emirate": "Dubai",
+    "fromAED": null,
+    "bestFor": {
+      "en": "Logistics, industrial and large-scale trading",
+      "ar": "الخدمات اللوجستية والصناعة والتجارة واسعة النطاق"
+    },
+    "categories": [
+      "trading",
+      "general-trading"
+    ],
+    "visas": {
+      "en": "Scales with premises",
+      "ar": "تتدرج مع المنشأة"
+    },
+    "offices": [
+      "physical",
+      "warehouse"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "dubai-south",
+    "name": "Dubai South",
+    "emirate": "Dubai",
+    "fromAED": 12000,
+    "bestFor": {
+      "en": "Aviation, logistics and service companies",
+      "ar": "الطيران والخدمات اللوجستية وشركات الخدمات"
+    },
+    "categories": [
+      "trading",
+      "consultancy",
+      "professional"
+    ],
+    "visas": {
+      "en": "Scales with facility",
+      "ar": "تتدرج مع المنشأة"
+    },
+    "offices": [
+      "flexi",
+      "physical",
+      "warehouse"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "commercity",
+    "name": "Dubai CommerCity",
+    "emirate": "Dubai",
+    "fromAED": null,
+    "bestFor": {
+      "en": "E-commerce and digital trade",
+      "ar": "التجارة الإلكترونية والتجارة الرقمية"
+    },
+    "categories": [
+      "ecommerce",
+      "trading"
+    ],
+    "visas": {
+      "en": "Package-based",
+      "ar": "حسب الباقة"
+    },
+    "offices": [
+      "flexi",
+      "physical",
+      "warehouse"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "shams",
+    "name": "SHAMS",
+    "emirate": "Sharjah",
+    "fromAED": 5750,
+    "bestFor": {
+      "en": "Media, creative and service businesses",
+      "ar": "الإعلام والأعمال الإبداعية والخدمية"
+    },
+    "categories": [
+      "marketing",
+      "consultancy",
+      "ecommerce",
+      "professional"
+    ],
+    "visas": {
+      "en": "Package-based",
+      "ar": "حسب الباقة"
+    },
+    "offices": [
+      "flexi",
+      "shared"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "spc",
+    "name": "SPC Free Zone",
+    "emirate": "Sharjah",
+    "fromAED": 5750,
+    "bestFor": {
+      "en": "Cost-conscious founders, freelancers and small service firms",
+      "ar": "المؤسسون الباحثون عن تكلفة منخفضة والمستقلون والشركات الخدمية الصغيرة"
+    },
+    "categories": [
+      "consultancy",
+      "ecommerce",
+      "marketing",
+      "professional",
+      "trading"
+    ],
+    "visas": {
+      "en": "Package-based",
+      "ar": "حسب الباقة"
+    },
+    "offices": [
+      "flexi",
+      "shared"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "rakez",
+    "name": "RAKEZ",
+    "emirate": "Ras Al Khaimah",
+    "fromAED": 6000,
+    "bestFor": {
+      "en": "Budget trading, industrial and SMEs",
+      "ar": "التجارة الاقتصادية والصناعة والشركات الصغيرة والمتوسطة"
+    },
+    "categories": [
+      "trading",
+      "general-trading",
+      "consultancy",
+      "ecommerce"
+    ],
+    "visas": {
+      "en": "Flexible, package-based",
+      "ar": "مرنة حسب الباقة"
+    },
+    "offices": [
+      "flexi",
+      "shared",
+      "physical",
+      "warehouse"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "difc",
+    "name": "DIFC",
+    "emirate": "Dubai",
+    "fromAED": null,
+    "bestFor": {
+      "en": "Financial services and holding structures (regulated activities)",
+      "ar": "الخدمات المالية وهياكل الشركات القابضة (أنشطة منظّمة)"
+    },
+    "categories": [
+      "professional"
+    ],
+    "visas": {
+      "en": "Scales with premises",
+      "ar": "تتدرج مع المنشأة"
+    },
+    "offices": [
+      "physical"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  },
+  {
+    "id": "adgm",
+    "name": "ADGM",
+    "emirate": "Abu Dhabi",
+    "fromAED": null,
+    "bestFor": {
+      "en": "Financial services and holding structures under common law",
+      "ar": "الخدمات المالية والهياكل القابضة وفق القانون العام"
+    },
+    "categories": [
+      "professional"
+    ],
+    "visas": {
+      "en": "Scales with premises",
+      "ar": "تتدرج مع المنشأة"
+    },
+    "offices": [
+      "physical"
+    ],
+    "summary": {
+      "en": null,
+      "ar": null
+    }
+  }
+]

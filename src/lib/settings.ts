@@ -1,11 +1,13 @@
 import 'server-only';
+import { unstable_noStore as noStore } from 'next/cache';
 import { promises as fs } from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { get, put } from '@vercel/blob';
 
 // ---------------------------------------------------------------------------
 // Admin-managed settings: contact info, contact-form services, and SMTP.
-// Stored alongside leads (JSON file locally, Vercel KV in production).
+// Storage priority: Vercel KV → Vercel Blob → local JSON file (/tmp on serverless).
 // ---------------------------------------------------------------------------
 
 export interface SocialLinks {
@@ -19,7 +21,7 @@ export interface SocialLinks {
 
 export interface ContactSettings {
   phone: string;
-  whatsapp: string; // digits only, e.g. 971506065440
+  whatsapp: string; // digits only, e.g. 971545721019
   email: string;
   social: SocialLinks;
 }
@@ -55,7 +57,7 @@ export interface Settings {
 function defaultContact(): ContactSettings {
   return {
     phone: process.env.NEXT_PUBLIC_PHONE || '+971 50 606 5440',
-    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '971506065440',
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '971545721019',
     email: process.env.NEXT_PUBLIC_EMAIL || 'info@ibsconsultancy.ae',
     social: {
       facebook:
@@ -101,9 +103,11 @@ export function defaultSettings(): Settings {
   return { contact: defaultContact(), services: defaultServices(), smtp: defaultSmtp() };
 }
 
-// ---- Storage (mirrors src/lib/leads.ts) ----
+// ---- Storage ----
 const useKV = Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+const useBlob = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 const KV_KEY = 'ibs:settings';
+const BLOB_PATHNAME = 'admin/settings.json';
 
 function dataFilePath(): string {
   if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
@@ -144,6 +148,18 @@ async function readRaw(): Promise<Partial<Settings> | null> {
       return null;
     }
   }
+
+  if (useBlob) {
+    try {
+      const result = await get(BLOB_PATHNAME, { access: 'private' });
+      if (!result || result.statusCode !== 200 || !result.stream) return null;
+      const text = await new Response(result.stream).text();
+      return JSON.parse(text) as Partial<Settings>;
+    } catch {
+      return null;
+    }
+  }
+
   try {
     const raw = await fs.readFile(dataFilePath(), 'utf-8');
     return JSON.parse(raw) as Partial<Settings>;
@@ -164,12 +180,25 @@ async function writeRaw(settings: Settings): Promise<void> {
     });
     return;
   }
+
+  if (useBlob) {
+    await put(BLOB_PATHNAME, JSON.stringify(settings, null, 2), {
+      access: 'private',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: 'application/json',
+    });
+    return;
+  }
+
   const file = dataFilePath();
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, JSON.stringify(settings, null, 2), 'utf-8');
 }
 
 export async function getSettings(): Promise<Settings> {
+  // Always read live admin values — never bake contact into static HTML.
+  noStore();
   return withDefaults(await readRaw());
 }
 

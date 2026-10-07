@@ -2,25 +2,29 @@ import type { Dictionary } from '@/i18n/dictionaries';
 import { Reveal } from './Reveal';
 
 export function Stats({ dict }: { dict: Dictionary }) {
-  const { stats } = dict;
+  const items = dict.stats?.items ?? [];
+
   return (
-    <section className="relative z-10 -mt-12 pb-4">
+    <section className="relative -mt-8 pb-4 sm:-mt-12">
       <div className="container-tight">
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-ink-100 shadow-card lg:grid-cols-4">
-          {stats.items.map((item, i) => (
-            <Reveal
-              key={item.label}
-              delay={i * 80}
-              className="bg-white p-6 text-center sm:p-8"
-            >
-              <div className="font-display text-4xl font-bold text-ink-900 sm:text-5xl">
-                {item.value}
-                <span className="text-gold-500">{item.suffix}</span>
+        <Reveal>
+          <div className="surface-panel grid grid-cols-2 gap-px overflow-hidden bg-ink-100/60 sm:grid-cols-4">
+            {items.map((item) => (
+              <div
+                key={item.label}
+                className="bg-white px-5 py-8 text-center sm:px-6 sm:py-10"
+              >
+                <p className="font-display text-3xl font-semibold text-ink-900 sm:text-4xl">
+                  {item.value}
+                  <span className="text-steel-500">{item.suffix}</span>
+                </p>
+                <p className="mt-2 text-xs font-medium leading-snug text-ink-500 sm:text-sm">
+                  {item.label}
+                </p>
               </div>
-              <p className="mt-2 text-sm text-ink-500">{item.label}</p>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
