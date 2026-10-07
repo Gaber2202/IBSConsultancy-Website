@@ -64,6 +64,9 @@ export function Footer({
               <li><Link href={pathFor(locale)} className="hover:text-white">{nav.home}</Link></li>
               <li><Link href={pathFor(locale, 'about')} className="hover:text-white">{nav.about}</Link></li>
               <li><Link href={pathFor(locale, 'services')} className="hover:text-white">{nav.services}</Link></li>
+              <li><Link href={pathFor(locale, 'calculator')} className="hover:text-white">{nav.calculator}</Link></li>
+              <li><Link href={pathFor(locale, 'free-zones')} className="hover:text-white">{nav.freeZones}</Link></li>
+              <li><Link href={pathFor(locale, 'faq')} className="hover:text-white">{nav.faq}</Link></li>
               <li><Link href={pathFor(locale, 'blog')} className="hover:text-white">{nav.blog}</Link></li>
               <li><Link href={pathFor(locale, 'contact')} className="hover:text-white">{nav.contact}</Link></li>
             </ul>

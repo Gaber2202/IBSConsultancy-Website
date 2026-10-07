@@ -6,6 +6,7 @@ import { organizationSchema, servicesSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { Hero } from '@/components/Hero';
 import { Stats } from '@/components/Stats';
+import { HomeTools } from '@/components/tools/HomeTools';
 import { ServicesPreview } from '@/components/ServicesGrid';
 import { AboutTeaser } from '@/components/AboutTeaser';
 import { WhyUs } from '@/components/WhyUs';
@@ -32,6 +33,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <JsonLd data={[organizationSchema(locale, dict), servicesSchema(locale, dict)]} />
       <Hero locale={locale} dict={dict} />
       <Stats dict={dict} />
+      <HomeTools locale={locale} />
       <ServicesPreview locale={locale} dict={dict} />
       <AboutTeaser locale={locale} dict={dict} />
       <WhyUs dict={dict} />

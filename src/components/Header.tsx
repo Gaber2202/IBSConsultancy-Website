@@ -12,6 +12,10 @@ interface NavDict {
   home: string;
   about: string;
   services: string;
+  tools: string;
+  calculator: string;
+  freeZones: string;
+  faq: string;
   blog: string;
   contact: string;
   cta: string;
@@ -37,9 +41,12 @@ export function Header({ locale, nav, contact }: { locale: Locale; nav: NavDict;
 
   const links = [
     { href: pathFor(locale), label: nav.home, exact: true },
-    { href: pathFor(locale, 'about'), label: nav.about },
     { href: pathFor(locale, 'services'), label: nav.services },
+    { href: pathFor(locale, 'free-zones'), label: nav.freeZones },
+    { href: pathFor(locale, 'calculator'), label: nav.calculator },
+    { href: pathFor(locale, 'faq'), label: nav.faq },
     { href: pathFor(locale, 'blog'), label: nav.blog },
+    { href: pathFor(locale, 'about'), label: nav.about },
     { href: pathFor(locale, 'contact'), label: nav.contact },
   ];
 
@@ -57,12 +64,12 @@ export function Header({ locale, nav, contact }: { locale: Locale; nav: NavDict;
       <div className="container-tight flex h-20 items-center justify-between gap-4">
         <Logo locale={locale} variant={onDark ? 'light' : 'dark'} />
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Primary">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${
                 isActive(link.href, link.exact)
                   ? onDark
                     ? 'text-steel-300'
@@ -77,7 +84,7 @@ export function Header({ locale, nav, contact }: { locale: Locale; nav: NavDict;
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <LanguageSwitcher locale={locale} label={nav.langLabel} variant={onDark ? 'light' : 'dark'} />
           <Link href={pathFor(locale, 'contact')} className="btn-primary">
             {nav.cta}
@@ -87,7 +94,7 @@ export function Header({ locale, nav, contact }: { locale: Locale; nav: NavDict;
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className={`inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden ${
+          className={`inline-flex h-11 w-11 items-center justify-center rounded-full border xl:hidden ${
             onDark ? 'border-white/30 text-white' : 'border-ink-200 text-ink-900'
           }`}
           aria-expanded={open}
@@ -104,8 +111,8 @@ export function Header({ locale, nav, contact }: { locale: Locale; nav: NavDict;
       </div>
 
       <div
-        className={`overflow-hidden border-t border-ink-100 bg-white transition-[max-height] duration-300 lg:hidden ${
-          open ? 'max-h-[520px]' : 'max-h-0'
+        className={`overflow-hidden border-t border-ink-100 bg-white transition-[max-height] duration-300 xl:hidden ${
+          open ? 'max-h-[640px]' : 'max-h-0'
         }`}
       >
         <div className="container-tight flex flex-col gap-1 py-4">

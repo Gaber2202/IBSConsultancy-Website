@@ -43,6 +43,9 @@ Requirements: **Node.js 18.17+ (Node 20/22 recommended)**.
 | `/` | Redirects to `/en` or `/ar` based on the browser language |
 | `/en`, `/ar` | Home |
 | `/en/about`, `/en/services`, `/en/blog`, `/en/contact` | Marketing pages (and `/ar/...`) |
+| `/en/calculator`, `/en/free-zones`, `/en/golden-visa-eligibility`, `/en/mainland-vs-free-zone`, `/en/faq` | Lead tools (Phase B) |
+| `/en/free-zones/<slug>` | Free zone detail pages |
+| `/en/thank-you` | Post-lead conversion page (noindex) |
 | `/en/blog/<slug>` | Blog articles |
 | `/admin/login` | Admin sign‑in |
 | `/admin` | Lead dashboard (protected) |
