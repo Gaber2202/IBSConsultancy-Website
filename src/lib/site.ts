@@ -23,7 +23,7 @@ export type SiteContact = {
 
 export const contact: SiteContact = {
   phone: process.env.NEXT_PUBLIC_PHONE || '+971 50 606 5440',
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '971506065440',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '971545721019',
   email: process.env.NEXT_PUBLIC_EMAIL || 'info@ibsconsultancy.ae',
   social: {
     facebook:

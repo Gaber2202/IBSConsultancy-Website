@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { isLocale, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
-import { absoluteUrl, pathFor, alternatesFor } from '@/lib/site';
+import { absoluteUrl, alternatesFor } from '@/lib/site';
 import { breadcrumbSchema, organizationSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { PageHeader } from '@/components/PageHeader';
@@ -36,10 +37,15 @@ export default async function AboutPage({ params }: { params: { locale: string }
           ]),
         ]}
       />
-      <PageHeader eyebrow={about.eyebrow} title={about.title} subtitle={about.lead} />
+      <PageHeader
+        eyebrow={about.eyebrow}
+        title={about.title}
+        subtitle={about.lead}
+        imageSrc="/images/page-header-architecture.jpg"
+      />
 
       <section className="section">
-        <div className="container-tight grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+        <div className="container-tight grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <Reveal>
             <div className="space-y-5 text-ink-600">
               {about.body.map((para, i) => (
@@ -50,9 +56,20 @@ export default async function AboutPage({ params }: { params: { locale: string }
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <div className="rounded-2xl border border-gold-200 bg-gold-50 p-8">
-              <h2 className="text-xl font-bold text-ink-900">{about.missionTitle}</h2>
-              <p className="mt-4 leading-relaxed text-ink-700">{about.mission}</p>
+            <div className="space-y-5">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+                <Image
+                  src="/images/about-office.jpg"
+                  alt={locale === 'ar' ? 'مكتب استشارات IBS' : 'IBS consultancy office'}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="rounded-3xl border border-steel-200 bg-steel-50 p-8">
+                <h2 className="text-xl font-semibold text-ink-900">{about.missionTitle}</h2>
+                <p className="mt-4 leading-relaxed text-ink-700">{about.mission}</p>
+              </div>
             </div>
           </Reveal>
         </div>

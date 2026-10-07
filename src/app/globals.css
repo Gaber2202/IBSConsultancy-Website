@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --font-sans: 'Manrope', system-ui, sans-serif;
+    --font-sans: 'Roboto', system-ui, sans-serif;
     --font-arabic: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-    --font-display: 'Fraunces', Georgia, serif;
+    --font-display: 'Roboto', system-ui, sans-serif;
     --surface: #f4f7fa;
     --ink: #0b1b2b;
     --steel: #2f6fd0;
@@ -35,7 +35,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display tracking-tight;
+    @apply font-sans tracking-tight;
     text-wrap: balance;
   }
 

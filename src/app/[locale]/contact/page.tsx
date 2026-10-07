@@ -32,7 +32,7 @@ export default async function ContactPage({ params }: { params: { locale: string
   const infoItems = [
     { icon: IconPhone, label: c.phoneLabel, value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}`, ltr: true },
     { icon: IconMail, label: c.emailLabel, value: contact.email, href: `mailto:${contact.email}`, ltr: true },
-    { icon: IconChat, label: c.whatsappLabel, value: 'wa.me', href: whatsappHref, ltr: true, external: true },
+    { icon: IconChat, label: c.whatsappLabel, value: `+${contact.whatsapp}`, href: whatsappHref, ltr: true, external: true },
     { icon: IconPin, label: c.addressLabel, value: c.addressValue, href: undefined, ltr: false },
     { icon: IconClock, label: c.hoursLabel, value: c.hoursValue, href: undefined, ltr: false },
   ];

@@ -62,7 +62,7 @@ export function ContactSettingsForm({ initial }: { initial: ContactSettings }) {
             inputMode="numeric"
             value={form.whatsapp}
             onChange={(e) => set('whatsapp', e.target.value.replace(/[^\d]/g, ''))}
-            placeholder="971506065440"
+            placeholder="971545721019"
           />
           <p className="mt-1 text-xs text-ink-400">Link preview: https://wa.me/{form.whatsapp || '…'}</p>
         </Field>

@@ -63,7 +63,7 @@ Set these in `.env.local` (local) and in your Vercel project settings (productio
 |----------|----------|---------|
 | `NEXT_PUBLIC_SITE_URL` | ✅ | Canonical base URL, e.g. `https://ibsconsultancy.ae` (no trailing slash) |
 | `NEXT_PUBLIC_PHONE` | ✅ | Phone number shown on the site |
-| `NEXT_PUBLIC_WHATSAPP` | ✅ | WhatsApp number, digits only (e.g. `971500000000`) |
+| `NEXT_PUBLIC_WHATSAPP` | ✅ | WhatsApp number, digits only (e.g. `971545721019`) |
 | `NEXT_PUBLIC_EMAIL` | ✅ | Contact email |
 | `ADMIN_USERNAME` | ✅ | Admin dashboard username |
 | `ADMIN_PASSWORD` | ✅ | Admin dashboard password (use a strong one) |
@@ -124,7 +124,7 @@ The site currently uses a clean SVG monogram generated to match IBS's navy + gol
 ## 8. Design system
 
 - **Colours:** deep ink navy (`ink`) + steel blue accent (`steel` / legacy `gold` alias) — defined in `tailwind.config.ts`.
-- **Fonts:** Fraunces (display), Manrope (Latin body), IBM Plex Sans Arabic (Arabic) — loaded via Google Fonts.
+- **Fonts:** Roboto (Latin), IBM Plex Sans Arabic (Arabic) — loaded via Google Fonts.
 - **Components:** all in `src/components/`. Sections (`Hero`, `Stats`, `ServicesGrid`, `WhyUs`, `Process`, `Testimonials`, `CTASection`) are reused across pages.
 - **Conversion:** contact form redirects to `/[locale]/thank-you` and pushes a `generate_lead` dataLayer event when `NEXT_PUBLIC_GTM_ID` is set.
 

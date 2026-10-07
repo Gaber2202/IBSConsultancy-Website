@@ -11,7 +11,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Analytics } from '@/components/Analytics';
 
 const GOOGLE_FONTS_HREF =
-  'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

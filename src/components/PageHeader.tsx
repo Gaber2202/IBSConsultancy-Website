@@ -1,22 +1,31 @@
+import Image from 'next/image';
+
 export function PageHeader({
   eyebrow,
   title,
   subtitle,
+  imageSrc = '/images/page-header-architecture.jpg',
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
+  imageSrc?: string;
 }) {
   return (
     <section className="relative overflow-hidden pb-16 pt-36 text-white sm:pt-40 lg:pb-20 lg:pt-44">
-      <div className="absolute inset-0 hero-atmosphere" />
-      <div
-        className="absolute inset-0 opacity-30"
+      <Image
+        src={imageSrc}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
         aria-hidden="true"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(-18deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 16px)',
-        }}
+      />
+      <div className="absolute inset-0 bg-ink-950/78" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-ink-950/85 via-ink-950/55 to-transparent"
+        aria-hidden="true"
       />
       <div className="container-tight relative">
         <div className="max-w-3xl">

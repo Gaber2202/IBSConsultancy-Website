@@ -69,7 +69,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         arabic: ['var(--font-arabic)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-display)', 'Georgia', 'serif'],
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 2px 24px -10px rgba(11, 27, 43, 0.14)',

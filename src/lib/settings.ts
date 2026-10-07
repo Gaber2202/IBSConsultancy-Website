@@ -19,7 +19,7 @@ export interface SocialLinks {
 
 export interface ContactSettings {
   phone: string;
-  whatsapp: string; // digits only, e.g. 971506065440
+  whatsapp: string; // digits only, e.g. 971545721019
   email: string;
   social: SocialLinks;
 }
@@ -55,7 +55,7 @@ export interface Settings {
 function defaultContact(): ContactSettings {
   return {
     phone: process.env.NEXT_PUBLIC_PHONE || '+971 50 606 5440',
-    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '971506065440',
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '971545721019',
     email: process.env.NEXT_PUBLIC_EMAIL || 'info@ibsconsultancy.ae',
     social: {
       facebook:
