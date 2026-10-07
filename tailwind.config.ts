@@ -8,8 +8,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand — matches the IBS "Intelligent Business Solutions" mark:
-        // deep ink navy + a cool steel-blue accent + brushed silver/platinum.
+        // IBS brand: deep ink navy + steel accent + platinum
         ink: {
           DEFAULT: '#0B1B2B',
           50: '#F2F5F8',
@@ -24,7 +23,6 @@ const config: Config = {
           900: '#0B1B2B',
           950: '#060F19',
         },
-        // Primary accent — steel/azure blue drawn from the logo's navy.
         steel: {
           DEFAULT: '#2F6FD0',
           50: '#EAF2FC',
@@ -38,7 +36,6 @@ const config: Config = {
           800: '#16345F',
           900: '#0F213C',
         },
-        // Brushed silver / platinum from the logo's metallic lettering.
         silver: {
           DEFAULT: '#AEB8C4',
           50: '#F7F8FA',
@@ -52,8 +49,7 @@ const config: Config = {
           800: '#3F4753',
           900: '#2A303A',
         },
-        // Back-compat alias: legacy `gold-*` classes now render as steel-blue,
-        // keeping the whole UI on-brand without touching every component.
+        // Legacy alias used across components
         gold: {
           DEFAULT: '#2F6FD0',
           50: '#EAF2FC',
@@ -68,6 +64,7 @@ const config: Config = {
           900: '#0F213C',
         },
         sand: '#F4F7FA',
+        mist: '#E8EEF5',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
@@ -75,39 +72,45 @@ const config: Config = {
         display: ['var(--font-display)', 'Georgia', 'serif'],
       },
       boxShadow: {
-        soft: '0 2px 20px -8px rgba(11, 27, 43, 0.15)',
-        card: '0 8px 40px -12px rgba(11, 27, 43, 0.18)',
-        // Accent glow (kept under the legacy `gold` name used across the UI).
-        gold: '0 12px 34px -12px rgba(47, 111, 208, 0.5)',
-        steel: '0 12px 34px -12px rgba(47, 111, 208, 0.5)',
+        soft: '0 2px 24px -10px rgba(11, 27, 43, 0.14)',
+        card: '0 16px 48px -20px rgba(11, 27, 43, 0.22)',
+        gold: '0 14px 40px -14px rgba(47, 111, 208, 0.45)',
+        steel: '0 14px 40px -14px rgba(47, 111, 208, 0.45)',
+        glow: '0 0 0 1px rgba(47, 111, 208, 0.18), 0 20px 50px -24px rgba(47, 111, 208, 0.55)',
       },
       borderRadius: {
         xl: '1rem',
-        '2xl': '1.5rem',
+        '2xl': '1.25rem',
+        '3xl': '1.75rem',
       },
       container: {
         center: true,
-        padding: { DEFAULT: '1rem', lg: '2rem' },
-        screens: { '2xl': '1200px' },
+        padding: { DEFAULT: '1.25rem', lg: '2rem' },
+        screens: { '2xl': '1180px' },
       },
       keyframes: {
         'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '0%': { opacity: '0', transform: 'translateY(28px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         'fade-in': {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+        'ken-burns': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.06)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
         },
       },
       animation: {
-        'fade-up': 'fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'fade-in': 'fade-in 0.9s ease forwards',
-        float: 'float 6s ease-in-out infinite',
+        'fade-up': 'fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in': 'fade-in 1s ease forwards',
+        'ken-burns': 'ken-burns 18s ease-out forwards',
+        shimmer: 'shimmer 8s ease infinite',
       },
     },
   },

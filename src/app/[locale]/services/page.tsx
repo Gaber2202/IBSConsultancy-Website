@@ -37,7 +37,7 @@ export default async function ServicesPage({ params }: { params: { locale: strin
         ]}
       />
       <PageHeader eyebrow={services.eyebrow} title={services.title} subtitle={services.subtitle} />
-      <ServicesDetailed dict={dict} />
+      <ServicesDetailed locale={locale} dict={dict} />
       <Process dict={dict} />
       <CTASection locale={locale} dict={dict} />
     </>

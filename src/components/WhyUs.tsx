@@ -4,34 +4,31 @@ import { Reveal } from './Reveal';
 export function WhyUs({ dict }: { dict: Dictionary }) {
   const { whyUs } = dict;
   return (
-    <section className="section bg-ink-950 text-white">
-      <div className="container-tight">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <span className="eyebrow text-gold-400">{whyUs.eyebrow}</span>
-              <h2 className="mt-4 text-3xl font-bold sm:text-4xl">{whyUs.title}</h2>
-              <div className="mt-8 h-px w-full bg-white/10" />
-              <div className="mt-8 flex items-center gap-4">
-                <div className="font-display text-6xl font-bold text-gold-500">98%</div>
-                <p className="max-w-[180px] text-sm text-white/60">
-                  of our clients would recommend IBS to a fellow founder.
-                </p>
-              </div>
-            </div>
-          </Reveal>
+    <section className="section relative overflow-hidden bg-ink-950 text-white">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            'radial-gradient(ellipse 50% 40% at 10% 20%, rgba(47,111,208,0.35), transparent 55%), radial-gradient(ellipse 40% 30% at 90% 80%, rgba(174,184,196,0.12), transparent 50%)',
+        }}
+      />
+      <div className="container-tight relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <span className="eyebrow text-steel-300">{whyUs.eyebrow}</span>
+          <h2 className="mt-4 text-3xl font-semibold sm:text-4xl lg:text-5xl">{whyUs.title}</h2>
+        </Reveal>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {whyUs.items.map((item, i) => (
-              <Reveal key={item.number} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-gold-500/40 hover:bg-white/[0.06]">
-                  <span className="font-display text-2xl font-bold text-gold-500">{item.number}</span>
-                  <h3 className="mt-3 text-lg font-bold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">{item.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+        <div className="mt-14 grid gap-5 sm:grid-cols-2">
+          {whyUs.items.map((item, i) => (
+            <Reveal key={item.number} delay={i * 80}>
+              <div className="h-full rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition-colors hover:border-steel-400/40 hover:bg-white/[0.07]">
+                <span className="font-display text-2xl font-semibold text-steel-300">{item.number}</span>
+                <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/65">{item.description}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

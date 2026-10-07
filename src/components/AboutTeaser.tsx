@@ -6,41 +6,36 @@ import { IconArrow } from './icons';
 import { Reveal } from './Reveal';
 
 export function AboutTeaser({ locale, dict }: { locale: Locale; dict: Dictionary }) {
-  const { about, servicesPreview, stats } = dict;
+  const { about, servicesPreview } = dict;
   return (
-    <section className="section bg-sand">
-      <div className="container-tight">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <section className="section relative overflow-hidden">
+      <div className="absolute inset-0 mesh-light opacity-70" aria-hidden="true" />
+      <div className="container-tight relative">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <span className="eyebrow">{about.eyebrow}</span>
-            <h2 className="mt-4 text-3xl font-bold text-ink-900 sm:text-4xl">{about.title}</h2>
+            <h2 className="mt-4 text-3xl font-semibold text-ink-900 sm:text-4xl lg:text-5xl">
+              {about.title}
+            </h2>
             <p className="mt-5 lead-text">{about.lead}</p>
             <p className="mt-4 text-ink-600">{about.body[0]}</p>
-            <Link href={pathFor(locale, 'about')} className="link-gold mt-7">
+            <Link href={pathFor(locale, 'about')} className="link-gold mt-8">
               {servicesPreview.readMore}
-              <IconArrow width={16} height={16} />
+              <IconArrow width={16} height={16} className="rtl-flip" />
             </Link>
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                {stats.items.slice(0, 4).map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`rounded-2xl border border-ink-100 bg-white p-6 shadow-soft ${
-                      i % 2 === 1 ? 'sm:mt-6' : ''
-                    }`}
-                  >
-                    <div className="font-display text-3xl font-bold text-ink-900">
-                      {item.value}
-                      <span className="text-gold-500">{item.suffix}</span>
-                    </div>
-                    <p className="mt-1.5 text-sm text-ink-500">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="pointer-events-none absolute -bottom-6 start-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-gold-500/20 blur-2xl" />
+            <div className="surface-panel relative overflow-hidden p-8 sm:p-10">
+              <div
+                className="absolute -end-10 -top-10 h-40 w-40 rounded-full bg-steel-500/15 blur-2xl"
+                aria-hidden="true"
+              />
+              <p className="font-display text-4xl font-semibold text-ink-900 sm:text-5xl">IBS</p>
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-steel-600">
+                {dict.hero.brandLine}
+              </p>
+              <p className="mt-6 text-ink-600">{about.mission}</p>
             </div>
           </Reveal>
         </div>

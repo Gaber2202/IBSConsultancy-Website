@@ -8,9 +8,10 @@ import { getSettings } from '@/lib/settings';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { Analytics } from '@/components/Analytics';
 
 const GOOGLE_FONTS_HREF =
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -77,6 +78,7 @@ export default async function LocaleLayout({
         <meta name="theme-color" content="#0B1B2B" />
       </head>
       <body className="flex min-h-screen flex-col">
+        <Analytics />
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-2 focus:rounded focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-white">
           {dict.common.skipToContent}
         </a>

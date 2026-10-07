@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { IconCheck } from './icons';
+import { pathFor } from '@/lib/site';
+import { pushLeadEvent } from '@/lib/analytics';
 
 type FormDict = Dictionary['contact']['form'];
 
@@ -21,8 +23,9 @@ export function LeadForm({
   /** Admin-managed service options; falls back to dictionary defaults. */
   services?: string[];
 }) {
+  const router = useRouter();
   const serviceOptions = services && services.length ? services : dict.serviceOptions;
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
   const [errors, setErrors] = useState<Errors>({});
 
   function validate(form: HTMLFormElement): Errors {
@@ -50,8 +53,7 @@ export function LeadForm({
     const data = new FormData(form);
     // Honeypot: bots fill this hidden field
     if ((data.get('company_website') as string)?.length) {
-      setStatus('success');
-      form.reset();
+      router.push(pathFor(locale, 'thank-you'));
       return;
     }
 
@@ -71,33 +73,24 @@ export function LeadForm({
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Request failed');
-      setStatus('success');
-      form.reset();
+      pushLeadEvent({
+        lead_service: String(payload.service || ''),
+        lead_locale: locale,
+      });
+      router.push(pathFor(locale, 'thank-you'));
     } catch {
       setStatus('error');
     }
   }
 
-  if (status === 'success') {
-    return (
-      <div className="rounded-2xl border border-gold-200 bg-gold-50 p-8 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500 text-ink-950">
-          <IconCheck width={28} height={28} strokeWidth={2.2} />
-        </div>
-        <h3 className="mt-5 text-xl font-bold text-ink-900">{dict.successTitle}</h3>
-        <p className="mt-2 text-ink-600">{dict.successBody}</p>
-      </div>
-    );
-  }
-
   const errClass = 'mt-1.5 text-sm text-red-600';
   const inputClass =
-    'w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-ink-900 placeholder:text-ink-300 focus:border-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-500/30 transition';
+    'w-full rounded-2xl border border-ink-200 bg-white px-4 py-3.5 text-ink-900 placeholder:text-ink-300 focus:border-steel-500 focus:outline-none focus:ring-2 focus:ring-steel-500/25 transition';
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-5">
+    <form onSubmit={onSubmit} noValidate className="relative space-y-5">
       {status === 'error' && (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
           <strong className="font-semibold">{dict.errorTitle}</strong> {dict.errorBody}
         </div>
       )}
@@ -107,14 +100,29 @@ export function LeadForm({
           <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink-700">
             {dict.name} <span className="text-red-500">*</span>
           </label>
-          <input id="name" name="name" type="text" className={inputClass} placeholder={dict.namePlaceholder} autoComplete="name" />
+          <input
+            id="name"
+            name="name"
+            type="text"
+            className={inputClass}
+            placeholder={dict.namePlaceholder}
+            autoComplete="name"
+          />
           {errors.name && <p className={errClass}>{errors.name}</p>}
         </div>
         <div>
           <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-ink-700">
             {dict.phone} <span className="text-red-500">*</span>
           </label>
-          <input id="phone" name="phone" type="tel" dir="ltr" className={inputClass} placeholder={dict.phonePlaceholder} autoComplete="tel" />
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            dir="ltr"
+            className={inputClass}
+            placeholder={dict.phonePlaceholder}
+            autoComplete="tel"
+          />
           {errors.phone && <p className={errClass}>{errors.phone}</p>}
         </div>
       </div>
@@ -123,7 +131,15 @@ export function LeadForm({
         <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink-700">
           {dict.email} <span className="text-red-500">*</span>
         </label>
-        <input id="email" name="email" type="email" dir="ltr" className={inputClass} placeholder={dict.emailPlaceholder} autoComplete="email" />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          dir="ltr"
+          className={inputClass}
+          placeholder={dict.emailPlaceholder}
+          autoComplete="email"
+        />
         {errors.email && <p className={errClass}>{errors.email}</p>}
       </div>
 
@@ -147,17 +163,26 @@ export function LeadForm({
         <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink-700">
           {dict.message}
         </label>
-        <textarea id="message" name="message" rows={4} className={inputClass} placeholder={dict.messagePlaceholder} />
+        <textarea
+          id="message"
+          name="message"
+          rows={4}
+          className={inputClass}
+          placeholder={dict.messagePlaceholder}
+        />
       </div>
 
-      {/* Honeypot field (hidden from users) */}
       <div className="absolute left-[-9999px]" aria-hidden="true">
         <label htmlFor="company_website">Company website</label>
         <input id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       <label className="flex items-start gap-3 text-sm text-ink-600">
-        <input name="consent" type="checkbox" className="mt-1 h-4 w-4 rounded border-ink-300 text-gold-500 focus:ring-gold-500" />
+        <input
+          name="consent"
+          type="checkbox"
+          className="mt-1 h-4 w-4 rounded border-ink-300 text-steel-500 focus:ring-steel-500"
+        />
         <span>{dict.consent}</span>
       </label>
       {errors.consent && <p className={errClass}>{errors.consent}</p>}

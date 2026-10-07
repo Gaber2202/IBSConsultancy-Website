@@ -120,9 +120,10 @@ The site currently uses a clean SVG monogram generated to match IBS's navy + gol
 
 ## 8. Design system
 
-- **Colours:** deep ink navy (`ink`) + refined gold (`gold`) — defined in `tailwind.config.ts`.
-- **Fonts:** Fraunces (display serif), Inter (Latin body), IBM Plex Sans Arabic (Arabic) — loaded via Google Fonts.
+- **Colours:** deep ink navy (`ink`) + steel blue accent (`steel` / legacy `gold` alias) — defined in `tailwind.config.ts`.
+- **Fonts:** Fraunces (display), Manrope (Latin body), IBM Plex Sans Arabic (Arabic) — loaded via Google Fonts.
 - **Components:** all in `src/components/`. Sections (`Hero`, `Stats`, `ServicesGrid`, `WhyUs`, `Process`, `Testimonials`, `CTASection`) are reused across pages.
+- **Conversion:** contact form redirects to `/[locale]/thank-you` and pushes a `generate_lead` dataLayer event when `NEXT_PUBLIC_GTM_ID` is set.
 
 ---
 
